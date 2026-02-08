@@ -1,4 +1,6 @@
-# MiniCom - Live Chat Support Demo
+# MiniCom - Live Chat Support Demo 
+
+Live link: https://chat-task-seven.vercel.app/ 
 
 A real-time customer support system prototype built with Next.js, React Context, and Tailwind CSS. Demonstrates live chat between visitors and support agents with optimistic UI updates, message retry logic, and offline handling.
 
