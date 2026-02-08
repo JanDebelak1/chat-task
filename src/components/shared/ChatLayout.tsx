@@ -1,10 +1,8 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { useTheme } from '@/context/ThemeContext';
+import { useTheme } from 'next-themes';
 import { Button } from '@/components/shared/Button';
-
-import { THEME } from '@/constants';
 
 interface ChatLayoutProps {
   headerTitle: string;
@@ -23,7 +21,7 @@ export const ChatLayout = ({
   children,
   showSidebar = true,
 }: ChatLayoutProps) => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   return (
     <div className="flex flex-col h-screen bg-surface-muted text-text">
@@ -37,23 +35,21 @@ export const ChatLayout = ({
         <Button
           variant="secondary"
           size="sm"
-          onClick={toggleTheme}
-          aria-label={theme === THEME.DARK ? 'Switch to light mode' : 'Switch to dark mode'}
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          suppressHydrationWarning
         >
-          {theme === THEME.DARK ? '☀️' : '🌙'}
+          {theme === 'dark' ? '☀️' : '🌙'}
         </Button>
       </header>
 
       <div className="flex flex-1 min-h-0">
         {sidebar && (
-          <div className={showSidebar ? 'block w-full lg:w-80' : 'hidden lg:block lg:w-80'}>
+          <aside className={showSidebar ? 'block w-full lg:w-80' : 'hidden lg:block lg:w-80'}>
             {sidebar}
-          </div>
+          </aside>
         )}
         <main
           className={`flex-1 flex flex-col min-w-0 bg-surface ${showSidebar ? 'hidden lg:flex' : 'flex w-full'}`}
-          role="region"
-          aria-label="Conversation"
         >
           {children}
         </main>

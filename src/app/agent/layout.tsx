@@ -35,7 +35,9 @@ export default function AgentLayout({
     (id: string) => {
       setActiveThreadId(id);
       markThreadRead(id);
-      setShowThreads(false);
+      if (window.innerWidth < 1024) {
+        setShowThreads(false);
+      }
       focusInput();
     },
     [setActiveThreadId, markThreadRead, focusInput]

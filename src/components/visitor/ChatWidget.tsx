@@ -1,13 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ThreadView } from '@/components/agent/ThreadView';
 import { MESSAGE_SENDER } from '@/types/chats';
 import { useThreads } from '@/context/ThreadContext';
+import { STORAGE_KEY_VISITOR_THREAD_ID } from '@/constants';
 
 export const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { visitorThreadId } = useThreads();
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    let visitorId = sessionStorage.getItem(STORAGE_KEY_VISITOR_THREAD_ID);
+    if (!visitorId) {
+      visitorId = crypto.randomUUID();
+      sessionStorage.setItem(STORAGE_KEY_VISITOR_THREAD_ID, visitorId);
+      window.location.reload();
+    }
+  }, []);
 
   if (!visitorThreadId) return null;
 

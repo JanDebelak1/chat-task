@@ -39,12 +39,8 @@ const loadFromStorage = (): {
   try {
     const saved = localStorage.getItem(STORAGE_KEY_THREADS);
     const threads = safeParseThreads(saved);
-    let visitorId = sessionStorage.getItem(STORAGE_KEY_VISITOR_THREAD_ID);
-    if (!visitorId) {
-      visitorId = crypto.randomUUID();
-      sessionStorage.setItem(STORAGE_KEY_VISITOR_THREAD_ID, visitorId);
-    }
-    const threadsWithMine = ensureThread(threads, visitorId);
+    const visitorId = sessionStorage.getItem(STORAGE_KEY_VISITOR_THREAD_ID);
+    const threadsWithMine = visitorId ? ensureThread(threads, visitorId) : threads;
     const activeThreadId = localStorage.getItem(STORAGE_KEY_ACTIVE_THREAD);
     return { threads: threadsWithMine, visitorThreadId: visitorId, activeThreadId };
   } catch {
