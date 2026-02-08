@@ -1,26 +1,85 @@
 @import "tailwindcss";
 
+@custom-variant dark (&&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-focus: #3b82f6;
+  --secondary: #e5e7eb;
+  --secondary-hover: #d1d5db;
+  --secondary-foreground: #111827;
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+  --surface: #ffffff;
+  --surface-muted: #f9fafb;
+  --surface-hover: #f3f4f6;
+  --border-default: #e5e7eb;
+  --text: #111827;
+  --text-muted: #6b7280;
+  --highlight: #eff6ff;
+  --highlight-hover: #dbeafe;
+  --highlight-border: #2563eb;
+  --badge: #ef4444;
+  --error-surface: #fef2f2;
+  --error-text: #991b1b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-focus: var(--primary-focus);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-danger: var(--danger);
+  --color-danger-hover: var(--danger-hover);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-hover: var(--surface-hover);
+  --color-border-default: var(--border-default);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-highlight: var(--highlight);
+  --color-highlight-hover: var(--highlight-hover);
+  --color-highlight-border: var(--highlight-border);
+  --color-badge: var(--badge);
+  --color-error-surface: var(--error-surface);
+  --color-error-text: var(--error-text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --secondary: #374151;
+  --secondary-hover: #4b5563;
+  --secondary-foreground: #f9fafb;
+  --surface: #111827;
+  --surface-muted: #1f2937;
+  --surface-hover: #374151;
+  --border-default: #374151;
+  --text: #f9fafb;
+  --text-muted: #9ca3af;
+  --highlight: #1e3a5f;
+  --highlight-hover: #1e40af;
+  --highlight-border: #3b82f6;
+  --error-surface: #450a0a;
+  --error-text: #fecaca;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--primary-focus);
+  outline-offset: 2px;
 }
